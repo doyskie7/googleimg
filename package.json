@@ -1,31 +1,38 @@
 {
-  "name": "google-images",
-  "version": "2.1.0",
-  "description": "Search images using Google Custom Search Engine API",
-  "license": "MIT",
-  "author": "Vadim Demedes <vdemedes@gmail.com>",
-  "repository": "vadimdemedes/google-images",
+  "name": "googleimg",
+  "version": "3.0.1",
+  "description": "Search for images using Google Images!",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava --serial"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obrobrio2000/googleimg.git"
+  },
   "keywords": [
     "google",
     "images",
     "google images",
+    "google image search",
     "image search"
   ],
-  "scripts": {
-    "test": "xo && ava --serial"
-  },
-  "engines": {
-    "node": ">= 4"
-  },
-  "files": [
-    "index.js"
-  ],
   "dependencies": {
-    "got": "^6.7.1"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "nock": "^9.0.6",
-    "xo": "^0.17.1"
+    "ava": "^4.3.1",
+    "nock": "^13.2.8"
+  },
+  "type": "module",
+  "author": "Giovanni Magliocchetti <giovimag123@gmail.com>",
+  "thanksTo": "Vadim Demedes <vdemedes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/obrobrio2000/googleimg/issues"
+  },
+  "homepage": "https://github.com/obrobrio2000/googleimg#readme",
+  "publishConfig": {
+    "registry": "https://registry-url"
   }
 }

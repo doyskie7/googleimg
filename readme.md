@@ -1,41 +1,41 @@
-# google-images [![Build Status](https://travis-ci.org/vadimdemedes/google-images.svg?branch=master)](https://travis-ci.org/vadimdemedes/google-images)
+<h1>googleimg</h1>
 
-> Search images using Google Custom Search Engine API.
-
+Search images using Google Custom Search Engine API.
 
 ## Installation
 
 ```
-$ npm install --save google-images
+npm install --save googleimg
 ```
-
 
 ## Usage
 
 **Note**: You'll need to [set up your own Google Custom Search Engine](#set-up-google-custom-search-engine) to execute queries.
 
 ```js
-const GoogleImages = require('google-images');
+const GoogleImages = require('googleimg');
 
 const client = new GoogleImages('CSE ID', 'API KEY');
 
 client.search('Steve Angello')
-	.then(images => {
-		/*
-		[{
-			"url": "http://steveangello.com/boss.jpg",
-			"type": "image/jpeg",
-			"width": 1024,
-			"height": 768,
-			"size": 102451,
-			"thumbnail": {
-				"url": "http://steveangello.com/thumbnail.jpg",
-				"width": 512,
-				"height": 512
-			}
-		}]
-		 */
-	});
+ .then(images => {
+  /*
+  [{
+    "link": 'http://steveangello.com/boss.jpg',
+    "mime": 'image/jpeg',
+    "snippet": 'Steve Angello',
+    "image": {
+      "contextLink": 'http://steveangello.com',
+      "width": 1024,
+      "height": 768,
+      "byteSize": 1000,
+      "thumbnailLink": 'http://steveangello.com/thumbboss.jpg',
+      "thumbnailWidth": 512,
+      "thumbnailHeight": 512
+    }
+  }]
+  */
+ });
 
 // paginate results
 client.search('Steve Angello', {page: 2});
@@ -43,7 +43,6 @@ client.search('Steve Angello', {page: 2});
 // search for certain size
 client.search('Steve Angello', {size: 'large'});
 ```
-
 
 ## API
 
@@ -130,16 +129,9 @@ For the most inclusive set, use the Schema: `Thing`. Make a note of the CSE ID.
 
 ### 2. Enable Image Search
 
-In your search engine settings, enable "Image search":
-
-<img src="media/screenshot.png" width="408" />
+In your search engine settings, enable "Image search".
 
 ### 3. Set up a Google Custom Search Engine API
 
 Register a new app and enable Google Custom Search Engine API here: [Google Developers Console](https://console.developers.google.com).
 Make a note of the API key.
-
-
-## License
-
-MIT © [Vadim Demedes](https://vadimdemedes.com)

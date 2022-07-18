@@ -1,9 +1,6 @@
-'use strict';
+import axios from 'axios';
 
-const qs = require('querystring');
-const got = require('got');
-
-class Client {
+export default class Client {
 	constructor(id, apiKey) {
 		if (!id) {
 			throw new TypeError('Expected a Custom Search Engine ID');
@@ -18,31 +15,15 @@ class Client {
 		this.id = id;
 	}
 
-	search(query, options) {
+	async search(query, options) {
 		if (!query) {
 			throw new TypeError('Expected a query');
 		}
 
 		const url = `${this.endpoint}/customsearch/v1?${this.buildQuery(query, options)}`;
 
-		return got(url, {json: true}).then(res => {
-			const items = res.body.items || [];
-
-			return items.map(item => ({
-				type: item.mime,
-				width: item.image.width,
-				height: item.image.height,
-				size: item.image.byteSize,
-				url: item.link,
-				thumbnail: {
-					url: item.image.thumbnailLink,
-					width: item.image.thumbnailWidth,
-					height: item.image.thumbnailHeight
-				},
-				description: item.snippet,
-				parentPage: item.image.contextLink
-			}));
-		});
+		const result = await axios.get(url);
+		return result.data.items;
 	}
 
 	buildQuery(query, options) {
@@ -52,7 +33,7 @@ class Client {
 			q: query.replace(/\s/g, '+'),
 			searchType: 'image',
 			cx: this.id,
-			key: this.apiKey
+			key: this.apiKey,
 		};
 
 		if (options.page) {
@@ -79,8 +60,6 @@ class Client {
 			result.safe = options.safe;
 		}
 
-		return qs.stringify(result);
+		return new URLSearchParams(result).toString();
 	}
 }
-
-module.exports = Client;
