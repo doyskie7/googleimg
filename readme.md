@@ -1,4 +1,4 @@
-<h1>googleimg</h1>
+<h1><a href="https://www.npmjs.com/package/googleimg">googleimg</a></h1>
 
 Search images using Google Custom Search Engine API.
 
