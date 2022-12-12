@@ -1,6 +1,6 @@
 {
   "name": "googleimg",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Search for images using Google Images!",
   "main": "index.js",
   "scripts": {
